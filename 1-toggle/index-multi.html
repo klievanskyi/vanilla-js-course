@@ -52,10 +52,17 @@
 	</form>
 
 	<script>
-		const inputPassword = document.querySelectorAll('[type="password"]');
-    const checkBox = document.querySelector('#show-password');
-    const config = 'config';
+		const inputPasswordArray = Array.prototype.slice.call(document.querySelectorAll('[type="password"]'));
+    const checkBox = document.querySelector('#show-passwords');
     
+    const handleClick = () => {
+      console.log('here');
+      inputPasswordArray.forEach(element => {
+        element.type = checkBox.checked ? 'text' : 'password';
+      });
+    }
+
+    checkBox.addEventListener('change', handleClick, false);
 	</script>
 </body>
 </html>
