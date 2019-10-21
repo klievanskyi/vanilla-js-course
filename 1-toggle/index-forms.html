@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Password Visibility - Multiple Fields</title>
+	<title>Password Visibility - Multiple Forms</title>
 
 	<style type="text/css">
 		body {
@@ -24,7 +24,36 @@
 </head>
 <body>
 
-	<h1>Password Visibility - Multiple Fields</h1>
+	<h1>Password Visibility - Multiple Forms</h1>
+
+	<h2>Change Username</h2>
+
+	<p>Enter your username and password to change your username.</p>
+
+	<form>
+		<div>
+			<label for="username">Username</label>
+			<input type="text" name="username" id="username">
+		</div>
+
+		<div>
+			<label for="password">Password</label>
+			<input type="password" name="password" id="password">
+		</div>
+
+		<div>
+			<label for="show-password">
+				<input type="checkbox" name="show-password" id="show-password">
+				Show password
+			</label>
+		</div>
+
+		<p>
+			<button type="submit">Change Username</button>
+		</p>
+	</form>
+
+	<h2>Change Password</h2>
 
 	<p>Enter your current password and new password below.</p>
 
@@ -52,17 +81,7 @@
 	</form>
 
 	<script>
-		const inputPasswordArray = [...document.querySelectorAll('[type="password"]')];
-    const checkBox = document.querySelector('#show-passwords');
-    
-    const handleClick = () => {
-      console.log('here');
-      inputPasswordArray.forEach(element => {
-        element.type = checkBox.checked ? 'text' : 'password';
-      });
-    }
-
-    checkBox.addEventListener('change', handleClick, false);
+		// Your code goes here...
 	</script>
 </body>
 </html>
