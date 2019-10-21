@@ -49,20 +49,8 @@
 		<p>
 			<button type="submit">Change Passwords</button>
 		</p>
-	</form>
-
-	<script>
-		const inputPasswordArray = [...document.querySelectorAll('[type="password"]')];
-    const checkBox = document.querySelector('#show-passwords');
-    
-    const handleClick = () => {
-      console.log('here');
-      inputPasswordArray.forEach(element => {
-        element.type = checkBox.checked ? 'text' : 'password';
-      });
-    }
-
-    checkBox.addEventListener('change', handleClick, false);
-	</script>
+  </form>
+  
+  <script src="js/app-multi.js"></script>
 </body>
 </html>
