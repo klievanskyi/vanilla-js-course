@@ -1,12 +1,23 @@
 const btn = document.querySelector('button');
-const text = document.querySelector('blockquote');
+const quote = document.querySelector('blockquote');
+const endPoint = 'http://ron-swanson-quotes.herokuapp.com/v2/quotes';
 
 const getQuote = () => {
-  fetch('http://ron-swanson-quotes.herokuapp.com/v2/quotes').then(resp => {
-    return resp.json();
-  }).then(data => {
-    text.textContent = data;
-  });
-}
+  fetch(endPoint)
+    .then(resp => {
+      if (resp.ok) {
+        return resp.json();
+      } else {
+        return Promise.reject(resp);
+      }
+    })
+    .then(data => {
+      quote.textContent = data;
+    })
+    .catch(err => {
+      console.warn('Something went wrong.', err);
+      quote.textContent = 'Something went wrong.';
+    });
+};
 
 btn.addEventListener('click', getQuote, false);
