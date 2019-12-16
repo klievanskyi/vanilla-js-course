@@ -1,6 +1,10 @@
 module.exports = {
   plugins: {
-    autoprefixer: {},
+    'postcss-import': {},
+    tailwindcss: {},
+    'postcss-preset-env': {
+      stage: 1,
+    },
     'css-mqpacker': {},
     cssnano: {
       preset: [
