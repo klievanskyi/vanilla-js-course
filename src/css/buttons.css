@@ -1,0 +1,15 @@
+.btn {
+  @apply inline-block font-medium py-2 px-4 border-2 cursor-pointer;
+
+  &--primary {
+    @apply bg-secondary border-secondary text-fourth;
+  }
+
+  &--pill {
+    @apply rounded-full;
+  }
+
+  &--outline {
+    @apply border-2 border-secondary;
+  }
+}

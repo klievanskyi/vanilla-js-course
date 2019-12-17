@@ -6,16 +6,44 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Template</title>
   </head>
-  <body class="flex bg-third">
-    <header class="bg-primary p-6">
-      <span class="text-fifth">Vanilla JS projects</span>
+  <body class="flex flex-col bg-third">
+    <header class="flex-shrink-0 bg-primary p-6">
+      <span class="text-fifth text-lg">Vanilla JS projects</span>
     </header>
-    <main>
+    <main class="flex-grow">
       <section>
         <ul>
-          <li>a</li>
-          <li>s</li>
-          <li>d</li>
+          <li
+            class="flex justify-between items-center m-6 p-4 rounded-lg shadow hover:shadow-lg transtion"
+          >
+            <span>Toggle Password Visibility</span>
+            <div>
+              <a class="btn btn--primary btn--pill mx-1" href="">Demo</a>
+              <a class="btn btn--pill btn--outline mx-1" href="">Code view</a>
+            </div>
+          </li>
+          <li
+            class="flex justify-between items-center m-6 p-4 rounded-lg shadow hover:shadow-lg transtion"
+          >
+            <span>Character Count</span>
+            <div>
+              <a class="btn btn--primary btn--pill mx-1" href="/word-count.html"
+                >Demo</a
+              >
+              <a class="btn btn--pill btn--outline mx-1" href="">Code view</a>
+            </div>
+          </li>
+          <li
+            class="flex justify-between items-center m-6 p-4 rounded-lg shadow hover:shadow-lg transtion"
+          >
+            <span>Random Ron</span>
+            <div>
+              <a class="btn btn--primary btn--pill mx-1" href="/random-ron.html"
+                >Demo</a
+              >
+              <a class="btn btn--pill btn--outline mx-1" href="">Code view</a>
+            </div>
+          </li>
         </ul>
       </section>
     </main>
