@@ -13,11 +13,9 @@ if (document.location.pathname === '/random-ron.html') {
         return Promise.reject(resp);
       })
       .then(data => {
-        console.log(existQuotesArray.indexOf(data));
-        if (existQuotesArray.indexOf(data) == -1) {
-          existQuotesArray.push(data);
+        if (existQuotesArray.toString().indexOf(data) === -1) {
+          existQuotesArray.push(data.toString());
           quote.textContent = data;
-          console.log(existQuotesArray);
         } else {
           getQuote();
         }
@@ -27,6 +25,8 @@ if (document.location.pathname === '/random-ron.html') {
         quote.textContent = 'Something went wrong.';
       });
   };
+
+  getQuote();
 
   btn.addEventListener('click', getQuote, false);
 }
