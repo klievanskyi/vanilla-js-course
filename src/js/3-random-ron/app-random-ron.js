@@ -7,6 +7,7 @@ if (document.location.pathname === '/random-ron.html') {
   const getQuote = () => {
     fetch(endPoint)
       .then(resp => {
+        console.log(resp.json());
         if (resp.ok) {
           return resp.json();
         }
