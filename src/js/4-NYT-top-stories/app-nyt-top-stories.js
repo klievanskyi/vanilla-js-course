@@ -1,10 +1,39 @@
 if (document.location.pathname === '/nyt-top-stories.html') {
-  const endPoint =
-    'https://api.nytimes.com/svc/topstories/v2/home.json?api-key=EdS4J6tNjJTENkNBtxKoWCMTHGdZJNdQ';
-  const resultsArray = [];
+  const categories = ['arts', 'books', 'movies', 'health', 'theater'];
   const list = document.querySelector('#list');
 
-  const getStories = () => {
+  const articleTemplate = item => {
+    return `
+    <article class="w-1/5 max-w-md">
+      <div class="flex flex-col justify-between h-full m-3">
+        <div>
+          <img src="https://via.placeholder.com/150" alt="" />
+          <h3 class="font-semibold py-2">
+            <a href="${item.url}">${item.title}</a>
+          </h3>
+          <span>${item.abstract}</span>
+        </div>
+        <span class="py-2">
+          <a href="${item.short_url}">Read more</a>
+        </span>
+      </div>
+    </article>`;
+  }
+
+  const sectionTemplate = (item, category) => {
+    return `
+    <div class="p-6 border border-primary rounded my-3">
+      <h2 class="font-medium capitalize">${category}</h2>
+      <div class="flex flex-wrap -mx-3">
+        ${item}
+      </div>
+    </div>
+    `
+  }
+  
+  const getStories = item => {
+    const endPoint =
+    `https://api.nytimes.com/svc/topstories/v2/${item}.json?api-key=EdS4J6tNjJTENkNBtxKoWCMTHGdZJNdQ`;
     fetch(endPoint)
       .then(resp => {
         if (resp.ok) {
@@ -13,35 +42,12 @@ if (document.location.pathname === '/nyt-top-stories.html') {
         return Promise.reject(resp);
       })
       .then(data => {
-        console.log(data.results);
-        data.results.map(elem => {
-          resultsArray.push(elem);
-        });
-        list.innerHTML = resultsArray
-          .map(elem => {
-            return `
-            <article class="flex flex-col max-w-md mx-3">
-              <img src="https://via.placeholder.com/150" alt="" />
-              <h2 class="font-semibold py-2">
-                <a href="${elem.url}">${elem.title}</a>
-              </h2>
-              <span>${elem.abstract}</span>
-              <span class="py-2">
-                <a href="${elem.short_url}">Read more</a>
-              </span>
-            </article>
-            `;
-          })
-          .join('');
+        return data.results.map(elem => articleTemplate(elem)).join('');
+      })
+      .then(data => {
+        list.innerHTML += sectionTemplate(data, item);
       });
   };
-  getStories();
-  // const template = (elem) => {
 
-  // }
-  // list.innerHTML = resultsArray
-  //   .map(elem => {
-  //     return `<li>${elem.abstract}</li>`;
-  //   })
-  //   .join('');
+  categories.map(item => getStories(item));
 }
