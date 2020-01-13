@@ -18,7 +18,7 @@ if (document.location.pathname === '/nyt-top-stories.html') {
         </span>
       </div>
     </article>`;
-  }
+  };
 
   const sectionTemplate = (item, category) => {
     return `
@@ -28,12 +28,11 @@ if (document.location.pathname === '/nyt-top-stories.html') {
         ${item}
       </div>
     </div>
-    `
-  }
-  
+    `;
+  };
+
   const getStories = item => {
-    const endPoint =
-    `https://api.nytimes.com/svc/topstories/v2/${item}.json?api-key=EdS4J6tNjJTENkNBtxKoWCMTHGdZJNdQ`;
+    const endPoint = `https://api.nytimes.com/svc/topstories/v2/${item}.json?api-key=EdS4J6tNjJTENkNBtxKoWCMTHGdZJNdQ`;
     fetch(endPoint)
       .then(resp => {
         if (resp.ok) {

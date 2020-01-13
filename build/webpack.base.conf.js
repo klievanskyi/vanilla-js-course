@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const PATHS = {
@@ -32,6 +33,13 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: '/node_modules/',
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+        },
       },
       {
         test: /\.scss$/,
@@ -92,6 +100,12 @@ module.exports = {
       template: `${PATHS.src}/index.html`,
       filename: './index.html',
     }),
+    new CopyWebpackPlugin([
+      {
+        from: `${PATHS.src}/img`,
+        to: `${PATHS.assets}/img`,
+      },
+    ]),
     ...PAGES.map(
       page =>
         new HtmlWebpackPlugin({
