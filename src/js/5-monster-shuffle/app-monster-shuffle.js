@@ -61,18 +61,14 @@ if (document.location.pathname === '/monster-shuffle.html') {
 
   const getGrid = () => shuffle(monsters).map(monster => render(monster));
 
-  // const clearBox = () => console.log(list.firstChild.remove());
-
-  // const clearBox = () => {
-  //   list.childNodes.forEach(el => {
-  //     el.remove();
-  //     console.dir(list.childNodes);
-  //   });
-  // };
-
   const clearBox = () => [...list.childNodes].map(el => el.remove());
+
+  const getNewGrid = () => {
+    clearBox();
+    getGrid();
+  };
 
   getGrid();
 
-  btn.addEventListener('click', clearBox, false);
+  btn.addEventListener('click', getNewGrid, false);
 }
