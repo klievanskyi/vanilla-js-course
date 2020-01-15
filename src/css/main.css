@@ -6,7 +6,3 @@
 
 @import "./common";
 @import "./buttons";
-
-.transtion {
-  transition: all 0.25s;
-}

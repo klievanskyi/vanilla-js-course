@@ -36,39 +36,33 @@ if (document.location.pathname === '/monster-shuffle.html') {
   };
 
   const render = elem => {
-    const div = document.createElement('div');
-    const innerDiv = document.createElement('div');
-    const img = document.createElement('img');
-    const span = document.createElement('span');
-    div.classList.add('w-1/3');
-    innerDiv.classList.add(
-      'flex',
-      'flex-col',
-      'items-center',
-      'bg-fourth',
-      'm-3',
-      'p-6'
-    );
-    div.append(innerDiv);
-    img.setAttribute('src', `/assets/img/${elem}.svg`);
-    img.classList.add('h-auto', 'max-w-full');
-    span.textContent = elem;
-    span.classList.add('pt-3');
-    innerDiv.append(img, span);
-
-    return list.append(div);
+    list.innerHTML += `
+    <div class="w-1/3 transition-transform-5 transform-style transform-scale-1">
+      <div class="relative flex items-center justify-center h-40 bg-fourth m-3 p-6">
+      <img src="/assets/img/${elem}.svg" class="absolute h-auto max-w-full transform-rotateY-180">
+        <img src="/assets/img/door.svg" class="absolute h-auto max-w-full">
+      </div>
+    </div>`;
   };
 
   const getGrid = () => shuffle(monsters).map(monster => render(monster));
 
-  const clearBox = () => [...list.childNodes].map(el => el.remove());
+  const clearBox = () => [...list.children].map(el => el.remove());
 
-  const getNewGrid = () => {
+  const handleGrid = () => {
     clearBox();
     getGrid();
   };
 
+  // eslint-disable-next-line no-inner-declarations
+  function handleCard() {
+    console.log('click');
+    this.classList.toggle('transform-rotateY-180');
+  }
+
   getGrid();
 
-  btn.addEventListener('click', getNewGrid, false);
+  btn.addEventListener('click', handleGrid, false);
+
+  [...list.children].map(card => card.addEventListener('click', handleCard));
 }
