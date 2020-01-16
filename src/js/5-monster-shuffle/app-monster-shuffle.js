@@ -39,7 +39,7 @@ if (document.location.pathname === '/monster-shuffle.html') {
     list.innerHTML += `
     <div class="w-1/3 transition-transform-5 transform-style transform-scale-1">
       <div class="relative flex items-center justify-center h-40 bg-fourth m-3 p-6">
-      <img src="/assets/img/${elem}.svg" class="absolute h-auto max-w-full transform-rotateY-180">
+        <img src="/assets/img/${elem}.svg" class="absolute h-auto max-w-full transform-rotateY-180">
         <img src="/assets/img/door.svg" class="absolute h-auto max-w-full">
       </div>
     </div>`;
@@ -55,9 +55,12 @@ if (document.location.pathname === '/monster-shuffle.html') {
   };
 
   // eslint-disable-next-line no-inner-declarations
-  function handleCard() {
-    console.log('click');
+  function handleCard(e) {
+    const targetCard = e.currentTarget.firstElementChild.firstElementChild.src;
     this.classList.toggle('transform-rotateY-180');
+    if (targetCard === 'http://localhost:8081/assets/img/sock.svg') {
+      handleGrid();
+    }
   }
 
   getGrid();
