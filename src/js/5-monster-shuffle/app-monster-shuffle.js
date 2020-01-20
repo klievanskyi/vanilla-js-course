@@ -45,15 +45,6 @@ if (document.location.pathname === '/monster-shuffle.html') {
     </div>`;
   };
 
-  const getGrid = () => shuffle(monsters).map(monster => render(monster));
-
-  const clearBox = () => [...list.children].map(el => el.remove());
-
-  const handleGrid = () => {
-    clearBox();
-    getGrid();
-  };
-
   // eslint-disable-next-line no-inner-declarations
   function handleCard(e) {
     const targetCard = e.currentTarget.firstElementChild.firstElementChild.src;
@@ -63,9 +54,19 @@ if (document.location.pathname === '/monster-shuffle.html') {
     }
   }
 
+  const getGrid = () => {
+    shuffle(monsters).map(monster => render(monster));
+    [...list.children].map(card => card.addEventListener('click', handleCard));
+  };
+
+  const clearBox = () => [...list.children].map(el => el.remove());
+
+  const handleGrid = () => {
+    clearBox();
+    getGrid();
+  };
+
   getGrid();
 
   btn.addEventListener('click', handleGrid, false);
-
-  [...list.children].map(card => card.addEventListener('click', handleCard));
 }
