@@ -45,28 +45,34 @@ if (document.location.pathname === '/monster-shuffle.html') {
     </div>`;
   };
 
-  // eslint-disable-next-line no-inner-declarations
-  function handleCard(e) {
-    const targetCard = e.currentTarget.firstElementChild.firstElementChild.src;
-    this.classList.toggle('transform-rotateY-180');
-    if (targetCard === 'http://localhost:8081/assets/img/sock.svg') {
-      handleGrid();
-    }
-  }
-
   const getGrid = () => {
     shuffle(monsters).map(monster => render(monster));
     [...list.children].map(card => card.addEventListener('click', handleCard));
   };
 
-  const clearBox = () => [...list.children].map(el => el.remove());
-
   const handleGrid = () => {
-    clearBox();
+    [...list.children].map(el => el.remove());
     getGrid();
   };
 
   getGrid();
 
   btn.addEventListener('click', handleGrid, false);
+
+  // eslint-disable-next-line no-inner-declarations
+  function handleCard(e) {
+    const targetCard = e.currentTarget.firstElementChild.firstElementChild.src;
+    this.classList.toggle('transform-rotateY-180');
+
+    if (targetCard === 'http://localhost:8081/assets/img/sock.svg') {
+      list.insertAdjacentHTML(
+        'beforebegin',
+        `<div class="text-center">You lose</div>`
+      );
+      setTimeout(() => {
+        list.previousElementSibling.remove();
+        handleGrid();
+      }, 3000);
+    }
+  }
 }
