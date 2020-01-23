@@ -3,11 +3,9 @@ if (document.location.pathname === '/table-of-contents.html') {
   const arrayHeaders = [...document.querySelectorAll('h2')];
 
   const templateCell = array => {
-    if (array.length > 0) {
-      return array
-        .map(elem => `<div><a href="#${elem.id}">${elem.textContent}</a></div>`)
-        .join('');
-    }
+    return array
+      .map(elem => `<div><a href="#${elem.id}">${elem.textContent}</a></div>`)
+      .join('');
   };
   const renderTable = () => {
     entryTable.innerHTML = templateCell(arrayHeaders);
